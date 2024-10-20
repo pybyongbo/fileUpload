@@ -2,6 +2,8 @@ const express = require('express');
 
 const bodyParser = require('body-parser');
 const multer = require('multer');
+const { writeFileSync } = require('fs');
+const { resolve } = require('path');
 
 const app = express();
 
@@ -32,6 +34,22 @@ app.post('/file', upload.single('file'), (req, res) => {
     res.send('ok');
   } else {
     res.send('error');
+  }
+});
+
+// base64 格式文件上传
+app.post('/base64', upload.single('base64'), (req, res) => {
+  const { file, ext } = req.body;
+  const binaryData = Buffer.from(file, 'base64');
+  try {
+    writeFileSync(
+      resolve(__dirname, 'uploads/' + Date.now() + '.' + ext),
+      binaryData,
+      'binary'
+    );
+    res.send('ok');
+  } catch (err) {
+    console.log(err);
   }
 });
 
