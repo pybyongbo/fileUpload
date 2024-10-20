@@ -53,6 +53,27 @@ app.post('/base64', upload.single('base64'), (req, res) => {
   }
 });
 
+// 二进制上传
+app.post('/binary', (req, res) => {
+  const ext = req.headers['x-ext'];
+  const buffers = [];
+  req
+    .on('data', (chunk) => {
+      buffers.push(chunk);
+    })
+    .on('end', () => {
+      const binaryData = Buffer.concat(buffers);
+      writeFileSync(
+        resolve(__dirname, 'uploads/' + Date.now() + '.' + ext),
+        binaryData,
+        'binary'
+      );
+      res.send('ok');
+    });
+  // const fileName = Date.now() + '.' + ext;
+  // writeFileSync(resolve(__dirname, 'uploads/' + fileName), req.body, 'binary');
+  // res.send('ok');
+});
 // application => app
 app.listen(8080, () => {
   console.log('Server started on port 8080');

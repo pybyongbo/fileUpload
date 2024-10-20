@@ -21,27 +21,42 @@ oUploadBtn.addEventListener(
     //     alert('上传成功');
     //   });
     // 2.base64 上传
-
+    // const file = oFile.files[0];
+    // const reader = new FileReader();
+    // const ext = file.name.split('.')[1];
+    // reader.onload = (e) => {
+    //   console.log(e.target.result);
+    //   const uint8Array = new Uint8Array(e.target.result);
+    //   const str = uint8Array.reduce((prev, byte) => {
+    //     return prev + String.fromCharCode(byte);
+    //   }, '');
+    //   const base64Data = btoa(str);
+    //   // console.log('str', str);
+    //   axios
+    //     .post('http://localhost:8080/base64', {
+    //       ext,
+    //       file: base64Data,
+    //     })
+    //     .then((res) => {
+    //       alert('上传成功');
+    //       console.log(res);
+    //     });
+    // };
+    // reader.readAsArrayBuffer(file);
+    // 3. 二进制上传
     const file = oFile.files[0];
     const reader = new FileReader();
-    const ext = file.name.split('.')[1];
     reader.onload = (e) => {
-      console.log(e.target.result);
-      const uint8Array = new Uint8Array(e.target.result);
-      const str = uint8Array.reduce((prev, byte) => {
-        return prev + String.fromCharCode(byte);
-      }, '');
-
-      const base64Data = btoa(str);
-      // console.log('str', str);
-
+      const binaryData = reader.result;
       axios
-        .post('http://localhost:8080/base64', {
-          ext,
-          file: base64Data,
+        .post('http://localhost:8080/binary', binaryData, {
+          headers: {
+            'Content-Type': 'application/octet-stream',
+            'x-ext': file.name.split('.')[1],
+          },
+          // responseType: 'arraybuffer', // 注意此处的 responseType
         })
         .then((res) => {
-          alert('上传成功');
           console.log(res);
         });
     };
