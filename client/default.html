@@ -9,6 +9,49 @@
 
 <body>
 
+  <img src="" alt="" id="imgAvatar">
+
+  <input type="file" id="avater" />
+
+  <button id="uploadBtn">上传</button>
+
+  <script>
+
+    async function upload() {
+      const inp = document.getElementById('avater');
+      if (inp.files.length === 0) {
+        alert('请选择文件');
+        return;
+      }
+      const file = inp.files[0];
+      console.log("file", file);
+      const formData = new FormData();
+      formData.append('imagefile', file);
+      // 也可以传递其他更多字段数据
+      const url = "http://101.132.72.36:5100/api/upload";
+
+      const resp = await fetch(url, {
+        method: 'POST',
+        // headers: {
+        //   'Content-Type': 'multipart/form-data'
+        // } // 不需要手动设置请求头，fetch会自动设置
+        body: formData // 自动修改请求头
+
+      });
+
+      const data = await resp.json();
+      // console.log(data);
+      return data;
+
+    }
+
+    document.getElementById('uploadBtn').addEventListener('click', async () => {
+      const data = await upload();
+      document.getElementById('imgAvatar').src = data?.path;
+    });
+
+  </script>
+
 </body>
 
 </html>

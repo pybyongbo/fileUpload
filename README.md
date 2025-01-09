@@ -58,3 +58,6 @@ headers: {
 请求的表单格式: multipart/form-data
 
 请求体中必须包含一个键值对,键的名称是服务器要求的名称,值是文件数据
+
+> HTML5 中,JS 仍然无法随意的获取文件数据,但是可以获取到 input 元素中,被用户选中的文件数据
+> 可以利用 HTML5 提供的 FormData 对象,将文件数据封装到 FormData 对象中,再通过 XMLHttpRequest 对象发送给服务器
