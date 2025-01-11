@@ -28,7 +28,8 @@
 
 ```
 // 普通文件上传 单文件上传  (multipart/form-data)
-接口API地址:'http://localhost:8080/file'
+接口API地址:'http://localhost:8080/file' (express版本)
+接口API地址:'http://localhost:3000/file' (koa版本)
 
 headers: {
       'Content-Type': 'multipart/form-data',
@@ -37,13 +38,15 @@ headers: {
 
 ```
 // base64 格式文件上传
-接口API地址:'http://localhost:8080/base64'
+接口API地址:'http://localhost:8080/base64' (express版本)
+接口API地址:'http://localhost:3000/base64' (koa版本)
 
 ```
 
 ```
 // 二进制格式文件上传
-接口API地址:'http://localhost:8080/binary'
+接口API地址:'http://localhost:8080/binary' (express版本)
+接口API地址:'http://localhost:3000/binary' (koa版本)
  headers: {
     'Content-Type': 'application/octet-stream',
     'x-ext': file.name.split('.')[1],
