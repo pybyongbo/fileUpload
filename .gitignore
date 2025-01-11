@@ -11,6 +11,9 @@ upload-express/client/node_modules
 upload-express/server/node_modules
 upload-koa/koa-uploadApi/node_modules
 upload-koa/upload-client/node_modules
+
+upload-express/server/uploads
+upload-koa/koa-uploadApi/public/uploads
 # dist
 dist-ssr
 *.local
