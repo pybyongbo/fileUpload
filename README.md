@@ -8,14 +8,23 @@
 
 ### 注意事项
 
-项目本地运行起来需要再`server`根目录下面建立一个`uploads`文件夹,存储上传的文件.
+项目本地运行起来需要再`/upload-express/server`根目录下面建立一个`uploads`文件夹,存储上传的文件.
 
 否则会报错.
 
-### 文件目录说明
+### 文件目录说明 (upload-express)
 
 - client 前端界面
-- server 后端接口
+- server 后端接口 (express 版本)
+
+**2025/01/11 更新**
+
+### 文件目录说明 (upload-koa)
+
+- upload-client 前端界面
+- koa-uploadApi 后端接口 (koa 版本)
+
+> 项目本地运行需要再 `/fileUploadKoa/koa-uploadApi/public/`目录下面建立一个`uploads`文件夹,存储上传的文件.
 
 ```
 // 普通文件上传 单文件上传  (multipart/form-data)
