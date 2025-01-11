@@ -44,7 +44,6 @@ router.post('/file', upload.single('file'), (ctx, next) => {
 // base64 格式文件上传
 router.post('/base64', upload.single('base64'), (ctx, next) => {
   const { file, ext, originalname } = ctx.request.body;
-  console.log(123, originalname);
   const binaryData = Buffer.from(file, 'base64');
   try {
     writeFileSync(

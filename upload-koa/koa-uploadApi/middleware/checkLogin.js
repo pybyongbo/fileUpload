@@ -7,7 +7,7 @@ async function intercept(ctx, next) {
   //   '192.168.1.2'
   // ]
   const token = getToken();
-  console.log(666, !token);
+  // console.log(666, !token);
   if (!token) {
     ctx.body = '您无权限访问';
     // 如果不执行next，就无法进入到下一个中间件
